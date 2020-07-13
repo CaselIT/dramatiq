@@ -103,11 +103,11 @@ jobs:
       - name: Install RabbitMQ and Redis
         run: |
           choco install rabbitmq
-          choco install redis-64
-          redis-server --service-install
-          redis-server --service-start
-          redis-cli config set appendonly no
-          redis-cli config set save ""
+          choco install memurai-developer
+          memurai --service-install
+          memurai --service-start
+          memurai-cli config set appendonly no
+          memurai-cli config set save ""
         shell: cmd
 
       - name: Install deps
