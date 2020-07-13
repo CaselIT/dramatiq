@@ -100,15 +100,18 @@ jobs:
           7z x memcached\memcached.zip -y -omemcached\
           Start-Process memcached\memcached\memcached.exe -PassThru
 
-      - name: Install RabbitMQ and Redis
+      - name: Install RabbitMQ and Redis/Memurai
         run: |
           choco install rabbitmq
           choco install memurai-developer
+        shell: cmd
+
+      - name: Start Redis/Memurai
+        run: |
           memurai --service-install
           memurai --service-start
           memurai-cli config set appendonly no
           memurai-cli config set save ""
-        shell: cmd
 
       - name: Install deps
         run: pip install -e '.[dev]'
